@@ -16,7 +16,8 @@ pub fn part_two(input: &str) -> Option<u32> {
         let mut splitter = line.split_whitespace().map(|n| Into::<u32>::into(n.chars().collect::<Vec<char>>()[0]));
         let opponent: u32 = splitter.next().unwrap() - 64;
         let me: u32 = splitter.next().unwrap() - 87;
-        ((me + opponent) % 3) - 2 + (3 * me)
+        println!("{} {}", opponent, me);
+        ((me + opponent) % 3) + (3 * me) - 2
     }).sum::<u32>())
 }
 
@@ -33,12 +34,12 @@ mod tests {
     #[test]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 2);
-        assert_eq!(part_one(&input), None);
+        assert_eq!(part_one(&input), Some(15));
     }
 
     #[test]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 2);
-        assert_eq!(part_two(&input), None);
+        assert_eq!(part_two(&input), Some(12));
     }
 }

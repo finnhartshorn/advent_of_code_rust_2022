@@ -5,10 +5,10 @@ pub fn part_one(input: &str) -> Option<u32> {
     Some(
         input
         .split("\n\n")
-            .scan(0, |state: &mut u32, line_group| {
-                Some(cmp::max::<u32>(line_group.lines().map(|line| line.parse::<u32>().unwrap()).sum::<u32>(), state.clone()))
+            .map(|line_group| {
+                line_group.lines().map(|line| line.parse::<u32>().unwrap()).sum::<u32>()
             })
-            .last()
+            .max()
             .unwrap(),
     )
 }
@@ -34,12 +34,12 @@ mod tests {
     #[test]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 1);
-        assert_eq!(part_one(&input), None);
+        assert_eq!(part_one(&input), Some(24000));
     }
 
     #[test]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 1);
-        assert_eq!(part_two(&input), None);
+        assert_eq!(part_two(&input), Some(45000));
     }
 }
