@@ -1,23 +1,37 @@
 pub fn part_one(input: &str) -> Option<u32> {
-    Some(input.lines().map(|line| {
-        let mut splitter = line.split_whitespace().map(|n| n.chars().collect::<Vec<char>>()[0].into());
-        let opponent: u32 = splitter.next().unwrap();
-        let me: u32 = splitter.next().unwrap();
-        match me - opponent {
-            23 => me + 3 - 87,
-            24 | 21 => me + 6 - 87,
-            _ => me - 87,
-        }
-    }).sum::<u32>())
+    Some(
+        input
+            .lines()
+            .map(|line| {
+                let mut splitter = line
+                    .split_whitespace()
+                    .map(|n| n.chars().collect::<Vec<char>>()[0].into());
+                let opponent: u32 = splitter.next().unwrap();
+                let me: u32 = splitter.next().unwrap();
+                match me - opponent {
+                    23 => me + 3 - 87,
+                    24 | 21 => me + 6 - 87,
+                    _ => me - 87,
+                }
+            })
+            .sum::<u32>(),
+    )
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    Some(input.lines().map(|line| {
-        let mut splitter = line.split_whitespace().map(|n| Into::<u32>::into(n.chars().collect::<Vec<char>>()[0]));
-        let opponent: u32 = splitter.next().unwrap() - 64;
-        let me: u32 = splitter.next().unwrap() - 87;
-        ((me + opponent) % 3) + (3 * me) - 2
-    }).sum::<u32>())
+    Some(
+        input
+            .lines()
+            .map(|line| {
+                let mut splitter = line
+                    .split_whitespace()
+                    .map(|n| Into::<u32>::into(n.chars().collect::<Vec<char>>()[0]));
+                let opponent: u32 = splitter.next().unwrap() - 64;
+                let me: u32 = splitter.next().unwrap() - 87;
+                ((me + opponent) % 3) + (3 * me) - 2
+            })
+            .sum::<u32>(),
+    )
 }
 
 fn main() {

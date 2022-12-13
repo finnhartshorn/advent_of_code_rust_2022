@@ -1,23 +1,33 @@
 pub fn part_one(input: &str) -> Option<u32> {
-    Some(input.lines().map(|line| {
-        let values = line.split(',').flat_map(|line| line.split('-').map(|digit| digit.parse::<u32>().unwrap())).collect::<Vec<u32>>();
-            if (values[0] >= values[2] && values[1] <= values[3]) || (values[0] <= values[2] && values[1] >= values[3]) {
-                1
-            } else {
-                0
-            }
-    }).sum())
+    Some(
+        input
+            .lines()
+            .map(|line| {
+                let values = line
+                    .split(',')
+                    .flat_map(|line| line.split('-').map(|digit| digit.parse::<u32>().unwrap()))
+                    .collect::<Vec<u32>>();
+                ((values[0] >= values[2] && values[1] <= values[3])
+                    || (values[0] <= values[2] && values[1] >= values[3])) as u32
+            })
+            .sum(),
+    )
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    Some(input.lines().map(|line| {
-        let values = line.split(',').flat_map(|line| line.split('-').map(|digit| digit.parse::<u32>().unwrap())).collect::<Vec<u32>>();
-            if (values[0] > values[3] && values[1] > values[3]) || (values[0] < values[2] && values[1] < values[2]) {
-                0
-            } else {
-                1
-            }
-    }).sum())
+    Some(
+        input
+            .lines()
+            .map(|line| {
+                let values = line
+                    .split(',')
+                    .flat_map(|line| line.split('-').map(|digit| digit.parse::<u32>().unwrap()))
+                    .collect::<Vec<u32>>();
+                !((values[0] > values[3] && values[1] > values[3])
+                    || (values[0] < values[2] && values[1] < values[2])) as u32
+            })
+            .sum(),
+    )
 }
 
 fn main() {

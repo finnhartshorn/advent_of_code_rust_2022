@@ -10,10 +10,10 @@ pub fn part_one(input: &str) -> Option<String> {
     }
 
     for line in stack_def_lines {
-        for i in 0..stacks.len() {
+        for (i, stack) in stacks.iter_mut().enumerate() {
             let pot_char = line.as_bytes()[1 + i * 4] as char;
             if pot_char != ' ' {
-                stacks[i].push(pot_char);
+                stack.push(pot_char);
             }
         }
     }
@@ -29,10 +29,12 @@ pub fn part_one(input: &str) -> Option<String> {
         }
     }
 
-    Some(stacks.iter_mut().map(|stack| {
-        stack.pop().unwrap()
-    }).collect())
-
+    Some(
+        stacks
+            .iter_mut()
+            .map(|stack| stack.pop().unwrap())
+            .collect(),
+    )
 }
 
 pub fn part_two(input: &str) -> Option<String> {
@@ -47,10 +49,10 @@ pub fn part_two(input: &str) -> Option<String> {
     }
 
     for line in stack_def_lines {
-        for i in 0..stacks.len() {
+        for (i, stack) in stacks.iter_mut().enumerate() {
             let pot_char = line.as_bytes()[1 + i * 4] as char;
             if pot_char != ' ' {
-                stacks[i].push(pot_char);
+                stack.push(pot_char);
             }
         }
     }
@@ -71,9 +73,12 @@ pub fn part_two(input: &str) -> Option<String> {
         }
     }
 
-    Some(stacks.iter_mut().map(|stack| {
-        stack.pop().unwrap()
-    }).collect())
+    Some(
+        stacks
+            .iter_mut()
+            .map(|stack| stack.pop().unwrap())
+            .collect(),
+    )
 }
 
 fn main() {
